@@ -6,6 +6,7 @@
 package GUI.Login;
 
 import Domain.Usuario;
+import GUI.AdminModule.AdminModule;
 import Utilities.StringMD;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -144,6 +145,9 @@ public class LoginAdmin extends javax.swing.JFrame {
                 jlError.setText("<html><font color=\"#FE0101\"><u>" + "Usuario y contraseña no coinciden." + "</u></font></html>");//#FF000
             }
         }
+        this.dispose();
+        AdminModule adminModule = new AdminModule();
+        adminModule.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -194,12 +198,12 @@ public class LoginAdmin extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean isAgent(String sha, String userOrMail) {
-        for (Usuario admin : admin) {
-            if (admin.getUsuario().equals(userOrMail) && admin.getContraseña().equals(sha)) {
-                return true;
-            }
-        }
-
+//        for (Usuario admin : admin) {
+//            if (admin.getUsuario().equals(userOrMail) && admin.getContraseña().equals(sha)) {
+//                return true;
+//            }
+//        }
+//
         return false;
     }
 }

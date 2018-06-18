@@ -15,15 +15,17 @@ import java.util.LinkedList;
 public class Lote {
 
     int id;
+    public static int cont = 0;
     String codigoLote;
     Date fechaEmpacado;//fecha y hora
     Date fechaVencimiento;//corregir para que sea solo fecha
 
     public Lote() {
+        this.id = ++cont;
     }
 
     public Lote(int id, String codigoLote, Date fechaEmpacado, Date fechaVencimiento) {
-        this.id = id;
+        this.id = cont++;
         this.codigoLote = codigoLote;
         this.fechaEmpacado = fechaEmpacado;
         this.fechaVencimiento = fechaVencimiento;
