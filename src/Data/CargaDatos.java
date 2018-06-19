@@ -37,7 +37,7 @@ public class CargaDatos {
     public void getOperadores() {
 
         LinkedList<Usuario> operadores = new LinkedList<Usuario>();
-        // operadores 
+        // operadores   
     }
 
     public void getAdministradores() {
