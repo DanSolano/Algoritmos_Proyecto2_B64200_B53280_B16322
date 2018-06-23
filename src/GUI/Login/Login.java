@@ -9,8 +9,11 @@ import Domain.Usuario;
 import Utilities.StringMD;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +31,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("<html><font color=\"#0000CF\"><u>" + "Ingresar como Administrador." + "</u></font></html>");//#FF000
         jLabel3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         enableEvents(MouseEvent.MOUSE_EVENT_MASK);
-        //inicializar la lista de usuarios con rol operador
 
     }
 
@@ -160,6 +162,7 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
         LoginAdmin loginAdmin = new LoginAdmin();
         loginAdmin.setVisible(true);
+
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -202,4 +205,5 @@ public class Login extends javax.swing.JFrame {
 
         return false;
     }
+
 }

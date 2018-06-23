@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.AdminModule.CRUDLote;
+package GUI.AdminModule.CRUD.Lote;
 
 import Domain.Lote;
 import java.util.ArrayList;
@@ -54,8 +54,6 @@ public class CrearLote extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(500, 600));
 
         jDesktopPane1.setMaximumSize(new java.awt.Dimension(1300, 760));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(500, 600));

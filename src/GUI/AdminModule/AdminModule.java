@@ -5,7 +5,7 @@
  */
 package GUI.AdminModule;
 
-import GUI.AdminModule.CRUDLote.CrearLote;
+import GUI.AdminModule.CRUD.Lote.CrearLote;
 
 /**
  *

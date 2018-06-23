@@ -24,7 +24,7 @@ public class Lote {
         this.id = ++cont;
     }
 
-    public Lote(int id, String codigoLote, Date fechaEmpacado, Date fechaVencimiento) {
+    public Lote(String codigoLote, Date fechaEmpacado, Date fechaVencimiento) {
         this.id = cont++;
         this.codigoLote = codigoLote;
         this.fechaEmpacado = fechaEmpacado;

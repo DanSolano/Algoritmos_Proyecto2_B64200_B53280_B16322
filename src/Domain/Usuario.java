@@ -5,19 +5,33 @@
  */
 package Domain;
 
+import static Domain.Lote.cont;
+import java.io.Serializable;
+
 /**
  *
  * @author daniel
  */
-public class Usuario {
+public class Usuario implements Serializable {
 
     int id;
+    public static int cont = 0;
     String nombre;
     String rol;//Administrador, operador
     String usuario;
     String contraseña;
 
     public Usuario() {
+        this.id = ++cont;
+    }
+
+    public Usuario(String nombre, String rol, String usuario, String contraseña) {
+        this.id = cont++;
+        this.id = id;
+        this.nombre = nombre;
+        this.rol = rol;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
     }
 
     public Usuario(int id, String nombre, String rol, String usuario, String contraseña) {
@@ -26,6 +40,15 @@ public class Usuario {
         this.rol = rol;
         this.usuario = usuario;
         this.contraseña = contraseña;
+    }
+
+    /**
+     *
+     * @return tamano del registro
+     *
+     */
+    public int tamano() {
+        return this.getNombre().length() * 2 + this.getRol().length() * 2 + this.getUsuario().length() * 2 + this.getContraseña().length() * 2 + 4;
     }
 
     public int getId() {

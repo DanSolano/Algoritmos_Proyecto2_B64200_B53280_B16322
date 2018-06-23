@@ -8,9 +8,7 @@ package GUI.Login;
 import Domain.Usuario;
 import GUI.AdminModule.AdminModule;
 import Utilities.StringMD;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,7 +22,7 @@ public class LoginAdmin extends javax.swing.JFrame {
      * Creates new form Login
      */
     public LoginAdmin() {
-        initComponents();
+            initComponents();
 //        inicializar la lista de usuarios con rol administrador
 
     }
@@ -206,4 +204,5 @@ public class LoginAdmin extends javax.swing.JFrame {
 //
         return false;
     }
+
 }
