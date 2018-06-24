@@ -6,26 +6,29 @@
 package GUI.AdminModule.CRUD.Usuario;
 
 
+import Data.CargaDatos;
 import Domain.Usuario;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author daniel
  */
-public class ListAdmins extends javax.swing.JFrame {
+public class ListaUsuarios extends javax.swing.JFrame {
 
     /**
      * Creates new form ListAgents
      */
     DefaultTableModel model;
-    ArrayList<Usuario> admins;
+    LinkedList<Usuario> usuarios;
     
 
-    public ListAdmins() {
+    public ListaUsuarios() {
         initComponents();
-        fillJtAgents(this.admins);
+        this.usuarios = CargaDatos.USUARIOS;
+        fillJtAgents(this.usuarios);
     }
 
     /**
@@ -131,21 +134,21 @@ public class ListAdmins extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtAgents;
     // End of variables declaration//GEN-END:variables
- public void fillJtAgents(ArrayList<Usuario> agentList) {
+ public void fillJtAgents(LinkedList<Usuario> userList) {
 
         model = new DefaultTableModel();
 
+        model.addColumn("ID");
         model.addColumn("Nombre");
+        model.addColumn("Rol");
         model.addColumn("Nombre de Usuario");
-        model.addColumn("E-Mail");
-        model.addColumn("Codigo");
-
+        
         this.jtAgents.setModel(model);
 
-        if (!agentList.isEmpty()) {
+        if (!userList.isEmpty()) {
 
-            for (Usuario agent : admins) {
-                model.addRow(new Object[]{agent.getNombre(), agent.getUsuario(), agent.getUsuario(), agent.getUsuario()});
+            for (Usuario usuario : usuarios) {
+                model.addRow(new Object[]{usuario.getId(), usuario.getNombre(), usuario.getRol(), usuario.getUsuario()});
             }
 
         }
@@ -153,7 +156,7 @@ public class ListAdmins extends javax.swing.JFrame {
     }//Fin metodo que llena la tabla
 
     private void back() {
-//        Algoritmos_Proyecto01_B16322_B31710_B67156.ADMIN_LIST = this.admins;
+//        Algoritmos_Proyecto01_B16322_B31710_B67156.ADMIN_LIST = this.usuarios;
 //        this.dispose();
 //        AdminModule adminModule = new AdminModule();
 //        adminModule.setVisible(true);

@@ -5,7 +5,10 @@
  */
 package GUI.AdminModule;
 
+import Data.SaveAll;
 import GUI.AdminModule.CRUD.Lote.CrearLote;
+import GUI.AdminModule.CRUD.Usuario.CreateUsuario;
+import GUI.AdminModule.CRUD.Usuario.ListaUsuarios;
 
 /**
  *
@@ -36,8 +39,14 @@ public class AdminModule extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
+        jMenuItem33 = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -68,16 +77,6 @@ public class AdminModule extends javax.swing.JFrame {
         jMenuItem30 = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
         jMenuItem32 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem25 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem20 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Panel de Control de Administradores");
@@ -90,21 +89,67 @@ public class AdminModule extends javax.swing.JFrame {
         jDesktopPane1.setMaximumSize(new java.awt.Dimension(1200, 700));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(1200, 700));
 
+        jButton1.setText("jButton1");
+
+        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1210, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(675, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(458, 458, 458))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(jButton1)
+                .addContainerGap(506, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jDesktopPane1);
         jDesktopPane1.getAccessibleContext().setAccessibleName("");
 
         jMenu1.setText("File");
+
+        jMenu10.setText("Usuario");
+
+        jMenuItem33.setText("Crear Usuario");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem33);
+
+        jMenuItem25.setText("Listar Usuarios");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem25);
+
+        jMenuItem12.setText("Actualizar Operador");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem12);
+
+        jMenuItem18.setText("Eliminar Operador");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem18);
+
+        jMenu1.add(jMenu10);
 
         jMenu5.setText("Producto Mayorista");
 
@@ -322,78 +367,6 @@ public class AdminModule extends javax.swing.JFrame {
 
         jMenu1.add(jMenu9);
 
-        jMenu2.setText("Operador");
-
-        jMenuItem1.setText("Crear Operador");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem1);
-
-        jMenuItem25.setText("Listar Operador");
-        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem25ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem25);
-
-        jMenuItem12.setText("Actualizar Operador");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem12);
-
-        jMenuItem18.setText("Eliminar Operador");
-        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem18ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem18);
-
-        jMenu1.add(jMenu2);
-
-        jMenu4.setText("Administrador");
-
-        jMenuItem6.setText("Crear Administrador");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem6);
-
-        jMenuItem3.setText("Listar Administrador");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem3);
-
-        jMenuItem13.setText("Actualizar Administrador");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem13);
-
-        jMenuItem20.setText("Eliminar Administrador");
-        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem20ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem20);
-
-        jMenu1.add(jMenu4);
-
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -421,14 +394,8 @@ public class AdminModule extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
     }//GEN-LAST:event_jMenuItem18ActionPerformed
@@ -439,26 +406,14 @@ public class AdminModule extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-    }//GEN-LAST:event_formWindowClosing
-
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
     }//GEN-LAST:event_jMenuItem23ActionPerformed
-
-    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
-    }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -494,7 +449,9 @@ public class AdminModule extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
-        // TODO add your handling code here:
+        ListaUsuarios listUsuarios = new ListaUsuarios();
+        this.dispose();
+        listUsuarios.setVisible(true);
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
     private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
@@ -528,27 +485,35 @@ public class AdminModule extends javax.swing.JFrame {
     private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem32ActionPerformed
+
+    private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
+        CreateUsuario cu = new CreateUsuario();
+        cu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem33ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        SaveAll saveAll = new SaveAll();
+    }//GEN-LAST:event_formWindowClosing
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
@@ -556,7 +521,6 @@ public class AdminModule extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
@@ -566,13 +530,12 @@ public class AdminModule extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
+    private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;

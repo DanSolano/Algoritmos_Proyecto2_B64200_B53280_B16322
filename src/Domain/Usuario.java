@@ -25,9 +25,11 @@ public class Usuario implements Serializable {
         this.id = ++cont;
     }
 
+    public Usuario(int a) {
+    }
+
     public Usuario(String nombre, String rol, String usuario, String contraseña) {
-        this.id = cont++;
-        this.id = id;
+        this.id = ++cont;
         this.nombre = nombre;
         this.rol = rol;
         this.usuario = usuario;
@@ -40,15 +42,6 @@ public class Usuario implements Serializable {
         this.rol = rol;
         this.usuario = usuario;
         this.contraseña = contraseña;
-    }
-
-    /**
-     *
-     * @return tamano del registro
-     *
-     */
-    public int tamano() {
-        return this.getNombre().length() * 2 + this.getRol().length() * 2 + this.getUsuario().length() * 2 + this.getContraseña().length() * 2 + 4;
     }
 
     public int getId() {

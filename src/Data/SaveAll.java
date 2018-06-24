@@ -15,6 +15,10 @@ import Utilities.StringPath;
  */
 public class SaveAll {
 
+    public SaveAll() {
+        save();
+    }
+
     public void save() {
         saveUser();
     }
@@ -22,7 +26,7 @@ public class SaveAll {
     private void saveUser() {
         AnyToArrayList anyArrayList = new AnyToArrayList();
         DataCSV adminCSV = new DataCSV(StringPath.PATH_USUARIO);
-        //  adminCSV.writeCSV(anyArrayList.userToArrayListObject(Algoritmos_Proyecto01_B16322_B31710_B67156.ADMIN_LIST));
+        adminCSV.writeCSV(anyArrayList.userToArrayListObject(CargaDatos.USUARIOS));
     }
 
 }

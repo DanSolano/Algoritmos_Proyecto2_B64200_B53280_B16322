@@ -41,6 +41,7 @@ public class DataCSV {
         ArrayList<Object> list = readCSV();
         LinkedList<Usuario> users = new LinkedList<Usuario>();
         for (Object object : list) {
+            new Usuario();
             users.add((Usuario) object);
         }
         return users;
@@ -122,9 +123,9 @@ public class DataCSV {
                     if (path.equals(StringPath.PATH_USUARIO)) {
 
                         int id = Integer.parseInt(stringMD.decodificar(dataImport.get(0)));
-                        String nombre = stringMD.decodificar(dataImport.get(1));
+                        String nombre = stringMD.descifrar(dataImport.get(1));
                         String rol = stringMD.decodificar(dataImport.get(2));
-                        String usuario = stringMD.decodificar(dataImport.get(3));
+                        String usuario = stringMD.descifrar(dataImport.get(3));
                         String contraseña = stringMD.decodificar(dataImport.get(4));
 
                         objeclArrList.add(new Usuario(id, nombre, rol, usuario, contraseña));
@@ -167,19 +168,19 @@ public class DataCSV {
                 CsvWriter csvOutput = new CsvWriter(outputFile, stringMD.codificarChar(';'), Charset.forName("UTF-8"));
 //                csvOutput.setDelimiter(';');
                 if (outputFile.equals(StringPath.PATH_USUARIO)) {
-                    csvOutput.write(stringMD.codificar("ID"));
+                    csvOutput.write(stringMD.cifrar("ID"));
                     csvOutput.write(stringMD.codificar("Nombre"));
-                    csvOutput.write(stringMD.codificar("Rol"));
+                    csvOutput.write(stringMD.cifrar("Rol"));
                     csvOutput.write(stringMD.codificar("Usuario"));
-                    csvOutput.write(stringMD.codificar("Contrasena"));
+                    csvOutput.write(stringMD.cifrar("Contrasena"));
                     csvOutput.endRecord();
 
                     for (Object object : writeList) {
                         Usuario agent = (Usuario) object;
                         csvOutput.write(stringMD.codificar(agent.getId() + ""));
-                        csvOutput.write(stringMD.codificar(agent.getNombre()));
+                        csvOutput.write(stringMD.cifrar(agent.getNombre()));
                         csvOutput.write(stringMD.codificar(agent.getRol()));
-                        csvOutput.write(stringMD.codificar(agent.getUsuario()));
+                        csvOutput.write(stringMD.cifrar(agent.getUsuario()));
                         csvOutput.write(stringMD.codificar(agent.getContraseña()));
 //                        csvOutput.write(agent.getKindUser());
                         csvOutput.endRecord();

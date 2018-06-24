@@ -21,7 +21,7 @@ public class AnyToArrayList {
     public AnyToArrayList() {
     }
 
-    public ArrayList<Object> userToArrayListObject(ArrayList<Usuario> agentOrAdminList) {
+    public ArrayList<Object> userToArrayListObject(LinkedList<Usuario> agentOrAdminList) {
         ArrayList<Object> arrayUsuario = new ArrayList<Object>();
         for (Usuario object : agentOrAdminList) {
             arrayUsuario.add(object);

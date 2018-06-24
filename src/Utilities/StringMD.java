@@ -5,6 +5,10 @@
  */
 package Utilities;
 
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -58,7 +62,7 @@ public class StringMD {
         for (int i = 0; i < cad.length(); i++) {
             for (int j = 0; j < 256; j++) {
                 if (cad.charAt(i) == (char) j) {
-                    pass += ((char) (j + 100));
+                    pass += ((char) (j + 5));
                 }//Fin For3
             }//Fin For2
         }//Fin For1
@@ -70,7 +74,7 @@ public class StringMD {
         for (int i = 0; i < cad.length(); i++) {
             for (int j = 0; j < 256; j++) {
                 if (cad.charAt(i) == (char) j) {
-                    pass += ((char) (j - 100));
+                    pass += ((char) (j - 5));
                 }//Fin For3
             }//Fin For2
         }//Fin For1
@@ -99,4 +103,45 @@ public class StringMD {
         }//Fin For2
         return pass;
     }//Fin decodificar
+    
+    
+     //Charset de caracteres cuando se cifra
+   private String charset1 = "!#$%&'()*+,-./:<=>?@[]^_|{}~¿⌐¬½☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼⌂Çç£¥₧ƒªº¼¡«";  //»░▒▓┤╡╢╖╕╣║╗╝╛
+   //Charset de caracteres cuando se descifra
+   private String charset2 = "abcdefghijklmnñopqrstuvwxyz 1234567890ABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ";
+    
+   /**
+    * Metodo que recibe un texto y cifra el contenido de
+    * acuerdo a los charset definidos
+    * @param texto
+    * @return texto
+    */
+   public String cifrar(String texto){
+      //Convierto a minuscula las letras del alfabeto que existan en el texto
+//      texto = texto.toLowerCase();
+      //Reemplazo los caracteres del charset2 con los del charset1
+      for (int i = 0; i < charset2.length(); i++) {
+         texto = texto.replace(charset2.charAt(i), charset1.charAt(i));
+      }
+      //Retorno el texto cifrado con el charset2
+      return texto;
+   }
+    
+   /**
+    * Metodo que recibe un texto y descifra el contenido de
+    * acuerdo a los charset definidos
+    * @param ♀texto
+    * @return texto
+    */
+   public String descifrar(String texto){
+      //Convierto a minuscula las letras del alfabeto que existan en el texto
+//      texto = texto.toLowerCase();
+      //Reemplazo los caracteres del charset1 con los del charset2
+      for (int i = 0; i < charset1.length(); i++) {
+         texto = texto.replace(charset1.charAt(i), charset2.charAt(i));
+      }
+      //Retorno el texto cifrado con el charset2
+      return texto;
+   }
+    
 }//fin de la clase

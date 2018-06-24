@@ -19,7 +19,8 @@ public class StringPath {
     public static final String PATH_ORDEN_DISTRIBUCION = "./data/Orden De Distribucion.csv";
     public static final String PATH_USUARIO = "./data/Usuarios.csv";
 
-   
+    public static final String DELETED_MARK = "*/*d=l=t=d*/*";
+
     public static final String AREA_CHART = "AreaChart";
     public static final String PIE_CHART = "PieChart";
     public static final String BAR_CHART = "BarChart";
