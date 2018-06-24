@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
+
+import java.io.Serializable;
 
 /**
  *
  * @author daniel
  */
-public class Bodega {
+
+
+public class Bodega implements Serializable{
 
     int id;
     String nombre;
@@ -66,8 +65,8 @@ public class Bodega {
         this.urlFotografia = urlFotografia;
     }
 
-    public Bodega(int id, String nombre, String latitud, String longitud, float distanciaCentroOperaciones, String urlFotografia) {
-        this.id = id;
+    public Bodega(String nombre, String latitud, String longitud, float distanciaCentroOperaciones, String urlFotografia) {
+        this.id = 0;
         this.nombre = nombre;
         this.latitud = latitud;
         this.longitud = longitud;
