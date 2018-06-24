@@ -28,7 +28,8 @@ public class CargaDatos {
     public CargaDatos() {
         try {
             getUsuarios();
-            getLote();
+            getLote(); 
+            
             getProductoMayorista();
 
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
