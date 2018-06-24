@@ -5,9 +5,10 @@
  */
 package GUI.AdminModule.CRUD.Usuario;
 
-
 import Data.CargaDatos;
 import Domain.Usuario;
+import GUI.AdminModule.AdminModule;
+import Utilities.StringPath;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +24,6 @@ public class ListaUsuarios extends javax.swing.JFrame {
      */
     DefaultTableModel model;
     LinkedList<Usuario> usuarios;
-    
 
     public ListaUsuarios() {
         initComponents();
@@ -65,7 +65,7 @@ public class ListaUsuarios extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtAgents);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Regresar al Modulo de administracion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -85,7 +85,7 @@ public class ListaUsuarios extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(352, 352, 352)
+                        .addGap(299, 299, 299)
                         .addComponent(jButton1)))
                 .addGap(20, 20, 20))
         );
@@ -94,9 +94,9 @@ public class ListaUsuarios extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(30, 30, 30))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,13 +142,15 @@ public class ListaUsuarios extends javax.swing.JFrame {
         model.addColumn("Nombre");
         model.addColumn("Rol");
         model.addColumn("Nombre de Usuario");
-        
+
         this.jtAgents.setModel(model);
 
         if (!userList.isEmpty()) {
 
             for (Usuario usuario : usuarios) {
-                model.addRow(new Object[]{usuario.getId(), usuario.getNombre(), usuario.getRol(), usuario.getUsuario()});
+                if (!usuario.getRol().equals(StringPath.DELETED_MARK)) {
+                    model.addRow(new Object[]{usuario.getId(), usuario.getNombre(), usuario.getRol(), usuario.getUsuario()});
+                }
             }
 
         }
@@ -156,9 +158,9 @@ public class ListaUsuarios extends javax.swing.JFrame {
     }//Fin metodo que llena la tabla
 
     private void back() {
-//        Algoritmos_Proyecto01_B16322_B31710_B67156.ADMIN_LIST = this.usuarios;
-//        this.dispose();
-//        AdminModule adminModule = new AdminModule();
-//        adminModule.setVisible(true);
+        CargaDatos.USUARIOS = this.usuarios;
+        this.dispose();
+        AdminModule adminModule = new AdminModule();
+        adminModule.setVisible(true);
     }
 }

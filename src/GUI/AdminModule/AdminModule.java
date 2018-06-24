@@ -8,7 +8,9 @@ package GUI.AdminModule;
 import Data.SaveAll;
 import GUI.AdminModule.CRUD.Lote.CrearLote;
 import GUI.AdminModule.CRUD.Usuario.CreateUsuario;
+import GUI.AdminModule.CRUD.Usuario.DeleteUsuario;
 import GUI.AdminModule.CRUD.Usuario.ListaUsuarios;
+import GUI.AdminModule.CRUD.Usuario.UpdateUsuario;
 
 /**
  *
@@ -20,12 +22,12 @@ public class AdminModule extends javax.swing.JFrame {
      * Creates new form AgentsModule
      */
     String lastButtonClicked;
-
+    
     public AdminModule() {
-
+        
         initComponents();
         this.setResizable(false);
-
+        
     }
 
     /**
@@ -39,7 +41,6 @@ public class AdminModule extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
@@ -89,25 +90,15 @@ public class AdminModule extends javax.swing.JFrame {
         jDesktopPane1.setMaximumSize(new java.awt.Dimension(1200, 700));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(1200, 700));
 
-        jButton1.setText("jButton1");
-
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(675, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(458, 458, 458))
+            .addGap(0, 1210, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jButton1)
-                .addContainerGap(506, Short.MAX_VALUE))
+            .addGap(0, 718, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(jDesktopPane1);
@@ -133,7 +124,7 @@ public class AdminModule extends javax.swing.JFrame {
         });
         jMenu10.add(jMenuItem25);
 
-        jMenuItem12.setText("Actualizar Operador");
+        jMenuItem12.setText("Actualizar Usuario");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -141,7 +132,7 @@ public class AdminModule extends javax.swing.JFrame {
         });
         jMenu10.add(jMenuItem12);
 
-        jMenuItem18.setText("Eliminar Operador");
+        jMenuItem18.setText("Eliminar Usuario");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem18ActionPerformed(evt);
@@ -398,6 +389,9 @@ public class AdminModule extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        DeleteUsuario deleteUsuario = new DeleteUsuario();
+        this.dispose();
+        deleteUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
@@ -428,6 +422,9 @@ public class AdminModule extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        UpdateUsuario updateUsuario = new UpdateUsuario();
+        this.dispose();
+        updateUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
@@ -500,7 +497,6 @@ public class AdminModule extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
@@ -543,5 +539,5 @@ public class AdminModule extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private javax.swing.JLabel jlDate;
     private javax.swing.JLabel jlHour;
-
+    
 }

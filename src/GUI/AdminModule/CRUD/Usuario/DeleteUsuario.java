@@ -5,10 +5,13 @@
  */
 package GUI.AdminModule.CRUD.Usuario;
 
-
+import Data.CargaDatos;
 import Domain.Usuario;
+import GUI.AdminModule.AdminModule;
+import Utilities.StringPath;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,23 +19,21 @@ import java.util.regex.Pattern;
  *
  * @author daniel
  */
-public class DeleteAdmin extends javax.swing.JFrame {
+public class DeleteUsuario extends javax.swing.JFrame {
 
-    private ArrayList<Usuario> admins;
+    private LinkedList<Usuario> usuarios;
+    Usuario usuarioEliminado = new Usuario(0);
     private TextAutoCompleter textAutocompleter;
     private int indexUser;
 
     /**
      * Creates new form CreateClient
      */
-    public DeleteAdmin() {
+    public DeleteUsuario() {
         initComponents();
         this.indexUser = -1;
+        this.usuarios = CargaDatos.USUARIOS;
         jbUpdate.setEnabled(false);
-        autoCompleter();
-
-//        textAutocompleter = new TextAutoCompleter(jtfMail);
-//        uploadSearchByMail();
     }
 
     /**
@@ -46,11 +47,12 @@ public class DeleteAdmin extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel2 = new javax.swing.JLabel();
-        jtfUser = new javax.swing.JTextField();
+        jtfUsuario = new javax.swing.JTextField();
         jbUpdate = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jlInformation = new javax.swing.JLabel();
         jbSearch = new javax.swing.JButton();
+        jcRol = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Eliminar Agente");
@@ -62,9 +64,9 @@ public class DeleteAdmin extends javax.swing.JFrame {
 
         jLabel2.setText("Usuario");
 
-        jtfUser.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtfUserKeyReleased(evt);
+                jtfUsuarioKeyReleased(evt);
             }
         });
 
@@ -92,31 +94,37 @@ public class DeleteAdmin extends javax.swing.JFrame {
             }
         });
 
+        jcRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un  Rol", "Administrador", "Operador" }));
+        jcRol.setToolTipText("");
+
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jtfUser, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jtfUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbUpdate, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jlInformation, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbSearch, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jcRol, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(34, 34, 34)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbUpdate)
-                .addGap(82, 82, 82)
+                .addGap(115, 115, 115)
                 .addComponent(jbSearch)
-                .addGap(46, 46, 46))
-            .addComponent(jlInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap(77, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
-                .addComponent(jtfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jcRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
                 .addGap(58, 58, 58))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -125,15 +133,17 @@ public class DeleteAdmin extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtfUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
+                .addComponent(jcRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSearch)
                     .addComponent(jButton2)
                     .addComponent(jbUpdate))
                 .addGap(18, 18, 18)
-                .addComponent(jlInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                .addGap(27, 27, 27))
+                .addComponent(jlInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,7 +171,7 @@ public class DeleteAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUpdateActionPerformed
-        textAutocompleter.removeItemByValue(jtfUser.getText().trim());
+
         delete();
 
 
@@ -171,9 +181,9 @@ public class DeleteAdmin extends javax.swing.JFrame {
         back();
     }//GEN-LAST:event_formWindowClosing
 
-    private void jtfUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfUserKeyReleased
+    private void jtfUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfUsuarioKeyReleased
         searchUser();
-    }//GEN-LAST:event_jtfUserKeyReleased
+    }//GEN-LAST:event_jtfUsuarioKeyReleased
 
     private void jbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSearchActionPerformed
         searchUser();
@@ -186,8 +196,9 @@ public class DeleteAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbSearch;
     private javax.swing.JButton jbUpdate;
+    private javax.swing.JComboBox<String> jcRol;
     private javax.swing.JLabel jlInformation;
-    private javax.swing.JTextField jtfUser;
+    private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -214,63 +225,67 @@ public class DeleteAdmin extends javax.swing.JFrame {
     }
 
     private void back() {
-//        Algoritmos_Proyecto01_B16322_B31710_B67156.ADMIN_LIST = this.admins;
-//        this.dispose();
-//        AdminModule adminModule = new AdminModule();
-//        adminModule.setVisible(true);
-    }
-
-    private boolean exist(String email, String user) {
-        boolean exist = false;
-//        for (User admin : admins) {
-//            if (admin.getUserName().equals(user)
-//                    || admin.getMail().equals(email)) {
-//                exist = true;
-//            }
-//        }
-        return exist;
-    }
-
-    private void uploadSearchByUser() {
-//        ArrayList<User> admins = this.admins;
-//        for (int i = 0; i < admins.size(); i++) {
-//            textAutocompleter.addItem(admins.get(i).getUserName());
-//        }
+        CargaDatos.USUARIOS = this.usuarios;
+        this.dispose();
+        AdminModule adminModule = new AdminModule();
+        adminModule.setVisible(true);
     }
 
     private void searchUser() {
-//        String user = jtfUser.getText().trim();
-//        int counter = -1;
-//        for (User agent : admins) {
-//            counter++;
-//
-//            if (agent.getUserName().equals(user)) {
-//                this.indexUser = counter;
-//                jlInformation.setText("Nombre: " + agent.getName() + "- Mail: " + agent.getMail());
-//                jbUpdate.setEnabled(true);
-//            }
-//        }
+        String user = jtfUsuario.getText().trim();
+        String rol = jcRol.getSelectedItem().toString();
+        String userMessage = "";
+
+        if (jcRol.getSelectedIndex() != 0) {
+
+            int counter = -1;
+            for (Usuario usuario : usuarios) {
+                counter++;
+
+                if (usuario.getUsuario().equals(user) && usuario.getRol().equals(rol)) {
+                    this.indexUser = counter;
+                    this.usuarioEliminado = usuario;
+                    userMessage += " ID:" + usuario.getId() + "";
+                    userMessage += "Nombre: " + usuario.getNombre();
+                    userMessage += " Rol:  " + usuario.getRol();
+                    jbUpdate.setEnabled(true);
+                    jlInformation.setText(userMessage);
+                    break;
+                } else {
+                    jlInformation.setText("El usuario no existe");
+                }
+            }
+        } else {
+            jlInformation.setText("Debe escribir un nombre de usuario y seleccionar un  rol ");
+        }
 
     }
 
     private void clearFields() {
-        jtfUser.setText("");
+        jtfUsuario.setText("");
         jlInformation.setText("Administrador Eliminado");
     }
 
     private void delete() {
-        this.admins.remove(this.indexUser);
-        jlInformation.setText("Administrador eliminado con exito.");
-        jbUpdate.setEnabled(false);
-        clearFields();
+
+        this.usuarioEliminado.setRol(StringPath.DELETED_MARK);
+        this.usuarios.set(this.indexUser, this.usuarioEliminado);
+//        this.admins.remove(this.indexUser);
+//        jlInformation.setText("Administrador eliminado con exito.");
+//        jbUpdate.setEnabled(false);
+//        clearFields();
 
     }
 
-    private void autoCompleter() {
-        textAutocompleter = new TextAutoCompleter(jtfUser);
-        textAutocompleter.setCaseSensitive(false);
-        textAutocompleter.setMode(0);//para que el autocompletar busque el fragmento escrito este contenido en alguna parte de la busqueda
-        uploadSearchByUser();
+    private boolean exist(String username, String rol) {
+        boolean exist = false;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getUsuario().equals(username)
+                    && usuario.getRol().equals(rol)) {
+                exist = true;
+            }
+        }
+        return exist;
     }
 
 }

@@ -5,10 +5,12 @@
  */
 package GUI.AdminModule.CRUD.Usuario;
 
+import Data.CargaDatos;
 import Domain.Usuario;
+import GUI.AdminModule.AdminModule;
 import Utilities.StringMD;
 import com.mxrck.autocompleter.TextAutoCompleter;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,9 +18,9 @@ import java.util.regex.Pattern;
  *
  * @author daniel
  */
-public class UpdateAdmin extends javax.swing.JFrame {
+public class UpdateUsuario extends javax.swing.JFrame {
 
-    private ArrayList<Usuario> admins;
+    private LinkedList<Usuario> usuarios;
 
     private TextAutoCompleter textAutocompleter;
     private int indexUser;
@@ -26,17 +28,13 @@ public class UpdateAdmin extends javax.swing.JFrame {
     /**
      * Creates new form CreateClient
      */
-    public UpdateAdmin() {
+    public UpdateUsuario() {
         initComponents();
         this.indexUser = -1;
+        this.usuarios = CargaDatos.USUARIOS;
 
         jbUpdate.setEnabled(false);
-        textAutocompleter = new TextAutoCompleter(jtfUser);
-        textAutocompleter.setCaseSensitive(false);
-        textAutocompleter.setMode(0);//para que el autocompletar busque el fragmento escrito este contenido en alguna parte de la busqueda
-        uploadSearchByUser();
-//        textAutocompleter = new TextAutoCompleter(jtfMail);
-//        uploadSearchByMail();
+
     }
 
     /**
@@ -51,10 +49,10 @@ public class UpdateAdmin extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jtfMail = new javax.swing.JTextField();
+        jtfId = new javax.swing.JTextField();
         jtfName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtfUser = new javax.swing.JTextField();
+        jtfUsuario = new javax.swing.JTextField();
         jbUpdate = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jlError = new javax.swing.JLabel();
@@ -63,6 +61,7 @@ public class UpdateAdmin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jpfPass = new javax.swing.JPasswordField();
         jpfPassB = new javax.swing.JPasswordField();
+        jcRol = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Actualizar Informacion de Administrador");
@@ -76,13 +75,9 @@ public class UpdateAdmin extends javax.swing.JFrame {
 
         jLabel2.setText("Usuario");
 
-        jLabel3.setText("e-mail:");
+        jtfId.setEditable(false);
 
-        jtfUser.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtfUserKeyReleased(evt);
-            }
-        });
+        jLabel3.setText("Id");
 
         jbUpdate.setText("Actualizar");
         jbUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -124,12 +119,15 @@ public class UpdateAdmin extends javax.swing.JFrame {
             }
         });
 
+        jcRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un  Rol", "Administrador", "Operador" }));
+        jcRol.setToolTipText("");
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jtfMail, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jtfId, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtfName, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jtfUser, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jtfUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbUpdate, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jlError, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -138,6 +136,7 @@ public class UpdateAdmin extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jpfPass, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jpfPassB, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jcRol, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -163,15 +162,17 @@ public class UpdateAdmin extends javax.swing.JFrame {
                                         .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                             .addComponent(jLabel3)
                                             .addGap(29, 29, 29)
-                                            .addComponent(jtfMail, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jtfId, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                             .addComponent(jLabel4)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jpfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jtfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jpfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addGap(28, 28, 28)
+                                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jcRol, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jtfUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))))
                                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                         .addGap(144, 144, 144)
                                         .addComponent(jbSearch)))
@@ -188,11 +189,13 @@ public class UpdateAdmin extends javax.swing.JFrame {
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addContainerGap()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtfUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jcRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbSearch)
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -201,7 +204,7 @@ public class UpdateAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtfMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -244,77 +247,69 @@ public class UpdateAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUpdateActionPerformed
-//        String pass = StringMD.getStringMessageDigest(new String(jpfPass.getPassword()).trim(), StringMD.SHA512);
-//        String passB = StringMD.getStringMessageDigest(new String(jpfPassB.getPassword()).trim(), StringMD.SHA512);
-//        String shaNothing = "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e";
-//
-//        Usuario u = this.admins.get(this.indexUser);
-//        String oldEmail = u.getMail();
-//        String oldUsername = u.getUserName();
-//        String newEmail = jtfMail.getText().trim();
-//        String newUsername = jtfUser.getText().trim();
-//
-//        if (pass.equals(shaNothing) && passB.equals(shaNothing)) {//validate passwordfield are not modified
-//            if (exist(newEmail, newUsername) && (newEmail.equals(oldEmail) && newUsername.equals(oldUsername))) {
-//                u.setName(jtfName.getText().trim());
-//                this.admins.set(this.indexUser, u);
-//                clearFields();
-//            } else if (exist(newEmail, newUsername) && (newEmail.equals(oldEmail) && !newUsername.equals(oldUsername))) {
-//                u.setName(jtfName.getText().trim());
-//                u.setUserName(newUsername);
-//                this.admins.set(this.indexUser, u);
-//                clearFields();
-//            } else if (exist(newEmail, newUsername) && (!newEmail.equals(oldEmail) && newUsername.equals(oldUsername))) {
-//                u.setName(jtfName.getText().trim());
-//                u.setMail(newEmail);
-//                this.admins.set(this.indexUser, u);
-//                clearFields();
-//            } else if (!exist(newEmail, newUsername)) {
-//                u.setName(jtfName.getText().trim());
-//                u.setUserName(newUsername);
-//                u.setMail(newEmail);
-//                this.admins.set(this.indexUser, u);
-//                clearFields();
-//            } else if (exist(newEmail, newUsername) && (!newEmail.equals(oldEmail) && !newUsername.equals(oldUsername))) {
-//                jlError.setText("El usuario o Mail se encuentra registrado.");
-//            } else {
-//                jlError.setText("Debe ingresar todos los datos.");
-//            }
-//        } else if (!pass.equals(shaNothing) || !passB.equals(shaNothing)) {//validate passwordfield are modified
-//            if (pass.equals(passB)) {
-//                if (exist(newEmail, newUsername) && (newEmail.equals(oldEmail) && newUsername.equals(oldUsername))) {
-//                    u.setName(jtfName.getText().trim());
-//                    u.setPassword(pass);
-//                    this.admins.set(this.indexUser, u);
-//                    clearFields();
-//                } else if (exist(newEmail, newUsername) && (newEmail.equals(oldEmail) && !newUsername.equals(oldUsername))) {
-//                    u.setName(jtfName.getText().trim());
-//                    u.setUserName(newUsername);
-//                    u.setPassword(pass);
-//                    this.admins.set(this.indexUser, u);
-//                    clearFields();
-//                } else if (exist(newEmail, newUsername) && (!newEmail.equals(oldEmail) && newUsername.equals(oldUsername))) {
-//                    u.setName(jtfName.getText().trim());
-//                    u.setMail(newEmail);
-//                    u.setPassword(pass);
-//                    this.admins.set(this.indexUser, u);
-//                    clearFields();
-//                } else if (!exist(newEmail, newUsername)) {
-//                    u.setName(jtfName.getText().trim());
-//                    u.setUserName(newUsername);
-//                    u.setMail(newEmail);
-//                    u.setPassword(pass);
-//                    this.admins.set(this.indexUser, u);
-//                    clearFields();
-//                } else if (exist(newEmail, newUsername) && (!newEmail.equals(oldEmail) && !newUsername.equals(oldUsername))) {
-//                    jlError.setText("El usuario o Mail se encuentra registrado.");
-//                } else {
-//                    jlError.setText("Debe ingresar todos los datos.");
-//                }
-//            } else if (!pass.equals(passB)) {
-//                jlError.setText("Las contraseñas no  coinciden.");
-//            }
-//        }
+        String pass = new String(jpfPass.getPassword()).trim();
+        String passB = new String(jpfPassB.getPassword()).trim();
+
+        Usuario u = this.usuarios.get(this.indexUser);
+
+        String newNombre = jtfName.getText().trim();
+        String newRol = jcRol.getSelectedItem().toString();
+        String newUsuario = jtfUsuario.getText().trim();
+        String oldNombre = u.getNombre();
+        String oldRole = u.getRol();
+        String oldUsuario = u.getUsuario();
+
+        if (pass.isEmpty() && passB.isEmpty()) {//validate passwordfield are not modified
+            if (exist(newUsuario, newRol) && (!newUsuario.equals(oldUsuario))) {
+                System.out.println("0");
+                jlError.setText("El usuario ya se encuentra registrado.");
+            } else if (exist(newUsuario, newRol) && !newUsuario.isEmpty() && newUsuario.equals(oldUsuario)) {
+                System.out.println("1");
+                u.setNombre(newNombre);
+                this.usuarios.set(this.indexUser, u);
+                clearFields();
+            } else if (!exist(newUsuario, newRol) && !newUsuario.isEmpty()) {
+                System.out.println("1.5 " + newUsuario);
+                u.setNombre(newNombre);
+                u.setUsuario(newUsuario);
+                u.setRol(newRol);
+                this.usuarios.set(this.indexUser, u);
+                clearFields();
+            } else {
+                System.out.println("2  " + newUsuario + " - " + oldUsuario);
+                jlError.setText("Debe ingresar todos los datos.");
+            }
+        } else if (!pass.isEmpty() && !passB.isEmpty()) {//validate passwordfield are modified
+            System.out.println("3" + pass + "");
+            if (!pass.equals(passB)) {
+                System.out.println("4");
+                jlError.setText("Las contraseñas no  coinciden.");
+            } else {
+                if (exist(newUsuario, newRol) && (!newUsuario.equals(oldUsuario))) {
+                    System.out.println("3.0");
+                    jlError.setText("El usuario ya se encuentra registrado.");
+                } else if (exist(newUsuario, newRol) && !newUsuario.isEmpty() && newUsuario.equals(oldUsuario)) {
+                    System.out.println("3.1");
+                    u.setNombre(newNombre);
+
+                    u.setContraseña(StringMD.getStringMessageDigest(pass, StringMD.SHA512));
+                    this.usuarios.set(this.indexUser, u);
+                    clearFields();
+                } else if (!exist(newUsuario, newRol) && !newUsuario.isEmpty()) {
+                    System.out.println("3.1.5 " + newUsuario);
+                    u.setNombre(newNombre);
+                    u.setUsuario(newUsuario);
+                    u.setRol(newRol);
+                    u.setContraseña(pass);
+                    this.usuarios.set(this.indexUser, u);
+                    clearFields();
+                } else {
+                    System.out.println("2  " + newUsuario + " - " + oldUsuario);
+                    jlError.setText("Debe ingresar todos los datos.");
+                }
+            }
+
+        }
 
 
     }//GEN-LAST:event_jbUpdateActionPerformed
@@ -322,10 +317,6 @@ public class UpdateAdmin extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         back();
     }//GEN-LAST:event_formWindowClosing
-
-    private void jtfUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfUserKeyReleased
-        searchUser();
-    }//GEN-LAST:event_jtfUserKeyReleased
 
     private void jbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSearchActionPerformed
         searchUser();
@@ -369,12 +360,13 @@ public class UpdateAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton jbSearch;
     private javax.swing.JButton jbUpdate;
+    private javax.swing.JComboBox<String> jcRol;
     private javax.swing.JLabel jlError;
     private javax.swing.JPasswordField jpfPass;
     private javax.swing.JPasswordField jpfPassB;
-    private javax.swing.JTextField jtfMail;
+    private javax.swing.JTextField jtfId;
     private javax.swing.JTextField jtfName;
-    private javax.swing.JTextField jtfUser;
+    private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -401,52 +393,57 @@ public class UpdateAdmin extends javax.swing.JFrame {
     }
 
     private void back() {
-//        this.dispose();
-//        AdminModule adminModule = new AdminModule();
-//        adminModule.setVisible(true);
+        CargaDatos.USUARIOS = this.usuarios;
+        this.dispose();
+        AdminModule adminModule = new AdminModule();
+        adminModule.setVisible(true);
     }
 
-    private boolean exist(String email, String user) {
+    private boolean exist(String username, String rol) {
         boolean exist = false;
-//        for (User admin : admins) {
-//            if (admin.getUserName().equals(user)
-//                    || admin.getMail().equals(email)) {
-//                exist = true;
-//            }
-//        }
+        for (Usuario usuario : usuarios) {
+            if (usuario.getUsuario().equals(username)
+                    && usuario.getRol().equals(rol)) {
+                exist = true;
+            }
+        }
         return exist;
     }
 
-    private void uploadSearchByUser() {
-//        ArrayList<User> administrators = this.admins;
-//        for (int i = 0; i < administrators.size(); i++) {
-//            textAutocompleter.addItem(administrators.get(i).getUserName());
-//        }
-    }
-
     private void searchUser() {
-        String user = jtfUser.getText().trim();
-//        int counter = -1;
-//        for (User agent : admins) {
-//            counter++;
-//
-//            if (agent.getUserName().equals(user)) {
-//                this.indexUser = counter;
-//                jtfName.setText(agent.getName());
-//                jtfMail.setText(agent.getMail());
-//                jbUpdate.setEnabled(true);
-//            }
-//        }
+        String user = jtfUsuario.getText().trim();
+        String rol = jcRol.getSelectedItem().toString();
+        if (jcRol.getSelectedIndex() != 0) {
+
+            int counter = -1;
+            for (Usuario usuario : usuarios) {
+                counter++;
+
+                if (usuario.getUsuario().equals(user) && usuario.getRol().equals(rol)) {
+                    System.out.println("666");
+                    this.indexUser = counter;
+                    jtfName.setText(usuario.getNombre());
+                    jtfId.setText(usuario.getId() + "");
+                    jbUpdate.setEnabled(true);
+                    jlError.setText("");
+                    break;
+                } else {
+                    jlError.setText("El usuario no existe");
+                }
+            }
+        } else {
+            jlError.setText("Debe escribir un nombre de usuario y seleccionar un  rol ");
+        }
 
     }
 
     private void clearFields() {
-        jtfMail.setText("");
+        jtfId.setText("");
         jtfName.setText("");
-        jtfUser.setText("");
+        jtfUsuario.setText("");
         jpfPass.setText("");
         jpfPassB.setText("");
-        jlError.setText("Administrador actualizado.");
+        jlError.setText("Usuario actualizado.");
     }
 
 }
