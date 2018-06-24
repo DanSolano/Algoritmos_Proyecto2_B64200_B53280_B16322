@@ -2,7 +2,7 @@ package GUI.AdminModule.CRUDLote;
 
 import java.util.HashMap;
 import javax.swing.JOptionPane;
-import Domain.Archivos;
+import Data.Archivos;
 
 /**
  *

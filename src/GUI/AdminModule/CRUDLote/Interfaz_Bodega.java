@@ -7,7 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Domain.Bodega;
-import Domain.Archivos;
+import Data.Archivos;
 import Bodegas.GraficoAdyacencia;
 import Bodegas.GraphException;
 /**
