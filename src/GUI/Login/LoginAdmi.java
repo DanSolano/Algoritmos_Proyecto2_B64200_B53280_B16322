@@ -6,11 +6,11 @@
 package GUI.Login;
 
 import GUI.AdminModule.AdminModule;
-import domain.Usuario;
+import Domain.Usuario;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
-import utilities.StringMD;
+import Utilities.StringMD;
 
 /**
  *
