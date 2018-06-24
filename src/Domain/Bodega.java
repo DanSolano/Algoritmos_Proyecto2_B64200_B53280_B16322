@@ -5,11 +5,13 @@
  */
 package Domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author daniel
  */
-public class Bodega {
+public class Bodega implements Serializable{
 
     int id;
     String nombre;
