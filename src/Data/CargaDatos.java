@@ -32,7 +32,6 @@ public class CargaDatos {
             
             getProductoMayorista();
             
-
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 
             Login login = new Login();
