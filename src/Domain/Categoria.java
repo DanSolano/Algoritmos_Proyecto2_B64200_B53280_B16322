@@ -5,13 +5,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class Categoría implements Serializable{
+public class Categoria implements Serializable{
 	private String nombre;
 	private Object categoría;
 	private int id;
 	private HashMap<String, Object> mapa;
 	
-	public Categoría(String nombre, Object categ) {
+	public Categoria(String nombre, Object categ) {
 		this.nombre = nombre;
 		this.categoría = categ;
 		this.id = 1111;

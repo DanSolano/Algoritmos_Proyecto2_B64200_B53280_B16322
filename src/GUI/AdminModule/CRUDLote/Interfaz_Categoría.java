@@ -116,7 +116,7 @@ public class Interfaz_Categoría extends javax.swing.JFrame {
         if(tfl_nombre.getText().isEmpty() || jTextArea1.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Todos los campos de texto deben estar llenos");
         }else{
-            Domain.Categoría category = new Domain.Categoría(tfl_nombre.getText(), jTextArea1.getText());
+            Domain.Categoria category = new Domain.Categoria(tfl_nombre.getText(), jTextArea1.getText());
             Archivos archivo = new Archivos("./Categorías.dat");
 //            archivo.crear();
             HashMap<String, Object> extraído = (HashMap) archivo.cargar();

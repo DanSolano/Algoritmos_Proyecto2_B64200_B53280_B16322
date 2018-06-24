@@ -5,8 +5,11 @@
  */
 package Data;
 
+import Domain.Categoria;
 import Domain.Usuario;
 import GUI.Login.Login;
+import Utilities.StringPath;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +22,16 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class CargaDatos {
 
+    public static LinkedList<Usuario> USUARIOS;
+    public static HashMap<String,Categoria> CATEGORIA;
+
     public CargaDatos() {
         try {
-            getOperadores();
-            getAdministradores();
+            getUsuarios();
+            getLote(); 
+            
+            getProductoMayorista();
+            
 
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 
@@ -34,13 +43,19 @@ public class CargaDatos {
     }
 
     //Aqui se crean los metodos que cargan  a los TDAs  la informacion de cada archivo
-    public void getOperadores() {
-
+    private void getUsuarios() {
+        DataCSV clientCSV = new DataCSV(StringPath.PATH_USUARIO);
         LinkedList<Usuario> operadores = new LinkedList<Usuario>();
-        // operadores 
+
+        operadores = clientCSV.readUsuario();
+        USUARIOS = operadores;
     }
 
-    public void getAdministradores() {
-        LinkedList<Usuario> administradores = new LinkedList<Usuario>();
+    private void getLote() {
+
     }
+
+    private void getProductoMayorista() {
+    }
+
 }
