@@ -5,9 +5,13 @@
  */
 package Data;
 
+import Domain.Categoria;
 import Domain.Usuario;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  *
@@ -26,12 +30,14 @@ public class AnyToArrayList {
         return arrayUsuario;
     }
 
-    public ArrayList<Object> clientToArrayListObject(LinkedList<Usuario> clientsArrayList) {
-        ArrayList<Object> arrayClient = new ArrayList<Object>();
-        for (Usuario object : clientsArrayList) {
-            arrayClient.add(object);
+    public ArrayList<Object> categoriaToArrayListObject(HashMap<String, Categoria> categorias) {
+        ArrayList<Object> arrayCategoria = new ArrayList<Object>();
+        Object categoria;
+        for (Map.Entry<String, Categoria> entry : categorias.entrySet()) {
+            categoria = entry.getValue();
+            arrayCategoria.add(categoria);
         }
-        return arrayClient;
-    }
 
+        return arrayCategoria;
+    }
 }

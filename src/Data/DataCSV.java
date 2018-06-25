@@ -1,5 +1,7 @@
 package Data;
 
+import Domain.Categoria;
+import Domain.ProductoMayorista;
 import Domain.Usuario;
 import Utilities.StringMD;
 import Utilities.StringPath;
@@ -10,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +42,17 @@ public class DataCSV {
             users.add((Usuario) object);
         }
         return users;
+    }
+
+    public HashMap<String, Categoria> readCategoria() {
+        ArrayList<Object> list = readCSV();
+        HashMap<String, Categoria> categorias = new HashMap<String, Categoria>();
+        for (Object object : list) {
+            Categoria categoria = (Categoria) object;
+            new Categoria();
+            categorias.put(categoria.getNombre(), categoria);
+        }
+        return categorias;
     }
 
 //    public Queue<Driver> readDrivers() {
@@ -124,7 +138,29 @@ public class DataCSV {
 
                         objeclArrList.add(new Usuario(id, nombre, rol, usuario, contraseña));
 
-                    }// else if (path.equals(StringPath.PATH_PRODUCTS)) {
+                    } else if (path.equals(StringPath.PATH_PRODUCTO_MAYORISTA)) {
+                        int id = Integer.parseInt(stringMD.decodificar(dataImport.get(0)));
+                        String nombre = stringMD.descifrar(dataImport.get(1));
+                        String unidadMedida = stringMD.decodificar(dataImport.get(2));
+                        int valorUnidad = Integer.parseInt(stringMD.descifrar(dataImport.get(3)));
+                        int pesoTotal = Integer.parseInt(stringMD.decodificar(dataImport.get(4)));
+                        String descripcion = stringMD.descifrar(dataImport.get(5));
+                        int idLote = Integer.parseInt(stringMD.decodificar(dataImport.get(6)));
+                        int idCategoria = Integer.parseInt(stringMD.descifrar(dataImport.get(7)));
+                        double precioTotal = Double.parseDouble(stringMD.decodificar(dataImport.get(8)));
+                        String urlFotografia = stringMD.descifrar(dataImport.get(9));
+
+                        objeclArrList.add(new ProductoMayorista(id, nombre, unidadMedida, valorUnidad, pesoTotal, descripcion, idLote, idCategoria, precioTotal, urlFotografia));
+
+                    } else if (path.equals(StringPath.PATH_CATEGORIA)) {
+
+                        int id = Integer.parseInt(stringMD.decodificar(dataImport.get(0)));
+                        String nombre = stringMD.descifrar(dataImport.get(1));
+                        String descripcion = stringMD.decodificar(dataImport.get(2));
+
+                        objeclArrList.add(new Categoria(id, nombre, descripcion));
+
+                    }
 
                 }
 
@@ -168,7 +204,6 @@ public class DataCSV {
                     csvOutput.write(stringMD.codificar("Usuario"));
                     csvOutput.write(stringMD.cifrar("Contrasena"));
                     csvOutput.endRecord();
-
                     for (Object object : writeList) {
                         Usuario agent = (Usuario) object;
                         csvOutput.write(stringMD.codificar(agent.getId() + ""));
@@ -176,11 +211,55 @@ public class DataCSV {
                         csvOutput.write(stringMD.codificar(agent.getRol()));
                         csvOutput.write(stringMD.cifrar(agent.getUsuario()));
                         csvOutput.write(stringMD.codificar(agent.getContraseña()));
-//                        csvOutput.write(agent.getKindUser());
                         csvOutput.endRecord();
                     }
 
-                }// else if (outputFile.equals(StringPath.PATH_CLIENT)) {
+                } else if (outputFile.equals(StringPath.PATH_PRODUCTO_MAYORISTA)) {
+
+                    csvOutput.write(stringMD.cifrar("ID"));
+                    csvOutput.write(stringMD.codificar("Nombre"));
+                    csvOutput.write(stringMD.cifrar("UnidadMedida"));
+                    csvOutput.write(stringMD.codificar("valorUnidad"));
+                    csvOutput.write(stringMD.cifrar("pesoTotal"));
+                    csvOutput.write(stringMD.codificar("descripcion"));
+                    csvOutput.write(stringMD.cifrar("idLote"));
+                    csvOutput.write(stringMD.codificar("idCategoria"));
+                    csvOutput.write(stringMD.cifrar("precioTotal"));
+                    csvOutput.write(stringMD.codificar("urlFotografia"));
+                    csvOutput.endRecord();
+
+                    for (Object object : writeList) {
+                        ProductoMayorista agent = (ProductoMayorista) object;
+                        csvOutput.write(stringMD.codificar(agent.getId() + ""));
+                        csvOutput.write(stringMD.cifrar(agent.getNombre()));
+                        csvOutput.write(stringMD.codificar(agent.getUnidaMedida()));
+                        csvOutput.write(stringMD.cifrar(agent.getValorUnidad() + ""));
+                        csvOutput.write(stringMD.codificar(agent.getPesoTotal() + ""));
+                        csvOutput.write(stringMD.cifrar(agent.getDescripcion() + ""));
+                        csvOutput.write(stringMD.codificar(agent.getIdLote() + ""));
+                        csvOutput.write(stringMD.cifrar(agent.getIdCategorita() + ""));
+                        csvOutput.write(stringMD.codificar(agent.getPesoTotal() + ""));
+                        csvOutput.write(stringMD.cifrar(agent.getUrlFotografia()));
+                        csvOutput.endRecord();
+                    }
+
+                } else if (outputFile.equals(StringPath.PATH_CATEGORIA)) {
+
+                    csvOutput.write(stringMD.cifrar("ID"));
+                    csvOutput.write(stringMD.codificar("Nombre"));
+                    csvOutput.write(stringMD.cifrar("Descripcion"));
+                    csvOutput.endRecord();
+
+                    for (Object object : writeList) {
+                        Categoria agent = (Categoria) object;
+                        csvOutput.write(stringMD.codificar(agent.getId() + ""));
+                        csvOutput.write(stringMD.cifrar(agent.getNombre()));
+                        csvOutput.write(stringMD.codificar(agent.getDescripcion()));
+
+                        csvOutput.endRecord();
+                    }
+
+                }
 
                 csvOutput.close();
 

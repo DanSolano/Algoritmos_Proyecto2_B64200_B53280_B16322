@@ -28,7 +28,7 @@ public class ListaUsuarios extends javax.swing.JFrame {
     public ListaUsuarios() {
         initComponents();
         this.usuarios = CargaDatos.USUARIOS;
-        fillJtAgents(this.usuarios);
+        fillJTableUsuarios(this.usuarios);
     }
 
     /**
@@ -134,7 +134,7 @@ public class ListaUsuarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtAgents;
     // End of variables declaration//GEN-END:variables
- public void fillJtAgents(LinkedList<Usuario> userList) {
+ public void fillJTableUsuarios(LinkedList<Usuario> userList) {
 
         model = new DefaultTableModel();
 

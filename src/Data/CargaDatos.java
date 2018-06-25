@@ -23,15 +23,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class CargaDatos {
 
     public static LinkedList<Usuario> USUARIOS;
-    public static HashMap<String,Categoria> CATEGORIA;
+    public static HashMap<String, Categoria> CATEGORIAS;
 
     public CargaDatos() {
         try {
             getUsuarios();
-            getLote(); 
-            
+            getCategorias();
+            getLote();
+
             getProductoMayorista();
-            
 
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 
@@ -48,7 +48,7 @@ public class CargaDatos {
         LinkedList<Usuario> operadores = new LinkedList<Usuario>();
 
         operadores = clientCSV.readUsuario();
-        USUARIOS = operadores;
+        this.USUARIOS = operadores;
     }
 
     private void getLote() {
@@ -56,6 +56,14 @@ public class CargaDatos {
     }
 
     private void getProductoMayorista() {
+    }
+
+    private void getCategorias() {
+        DataCSV clientCSV = new DataCSV(StringPath.PATH_USUARIO);
+        HashMap<String, Categoria> categorias = new HashMap<String, Categoria>();
+
+        categorias = clientCSV.readCategoria();
+        this.CATEGORIAS = categorias;
     }
 
 }

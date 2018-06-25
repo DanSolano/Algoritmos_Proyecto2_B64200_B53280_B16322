@@ -16,17 +16,20 @@ import Utilities.StringPath;
 public class SaveAll {
 
     public SaveAll() {
-        save();
-    }
-
-    public void save() {
         saveUser();
+        saveCategoria();
     }
 
     private void saveUser() {
         AnyToArrayList anyArrayList = new AnyToArrayList();
         DataCSV adminCSV = new DataCSV(StringPath.PATH_USUARIO);
         adminCSV.writeCSV(anyArrayList.userToArrayListObject(CargaDatos.USUARIOS));
+    }
+
+    private void saveCategoria() {
+        AnyToArrayList anyArrayList = new AnyToArrayList();
+        DataCSV adminCSV = new DataCSV(StringPath.PATH_CATEGORIA);
+        adminCSV.writeCSV(anyArrayList.categoriaToArrayListObject(CargaDatos.CATEGORIAS));
     }
 
 }

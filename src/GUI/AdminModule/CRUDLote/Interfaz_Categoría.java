@@ -3,6 +3,8 @@ package GUI.AdminModule.CRUDLote;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import Data.Archivos;
+import Data.CargaDatos;
+import Domain.Categoria;
 
 /**
  *
@@ -10,8 +12,10 @@ import Data.Archivos;
  */
 public class Interfaz_Categoría extends javax.swing.JFrame {
 
+    HashMap<String, Categoria> categorias;
     public Interfaz_Categoría() {
         initComponents();
+        this.categorias=CargaDatos.CATEGORIAS;
         jTextArea1.setEditable(true);
     }
 
@@ -23,17 +27,21 @@ public class Interfaz_Categoría extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tfl_nombre = new javax.swing.JTextField();
+        tfNombre = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         btn_save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Categoría");
 
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 0, 30)); // NOI18N
@@ -69,7 +77,7 @@ public class Interfaz_Categoría extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(158, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -84,7 +92,7 @@ public class Interfaz_Categoría extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(tfl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
@@ -113,23 +121,18 @@ public class Interfaz_Categoría extends javax.swing.JFrame {
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
         //Nos aseguramos que todos los textfields se llenaron
-        if(tfl_nombre.getText().isEmpty() || jTextArea1.getText().isEmpty()){
+        if(tfNombre.getText().isEmpty() || jTextArea1.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Todos los campos de texto deben estar llenos");
-        }else{
-            Domain.Categoria category = new Domain.Categoria(tfl_nombre.getText(), jTextArea1.getText());
-            Archivos archivo = new Archivos("./Categorías.dat");
-//            archivo.crear();
-            HashMap<String, Object> extraído = (HashMap) archivo.cargar();
-//            if (extraído == null) {
-//                HashMap<String, Object> mapa = new HashMap();
-//                mapa.put(category.getNombre(), category);
-//                archivo.escribir(mapa);
-//            }else{
-                extraído.put(category.getNombre(), category);
-                archivo.escribir(extraído);
-//            }
+        }else{/* if(!catExist())*/
+            Categoria c = new Categoria(0, tfNombre.getText(), jTextArea1.getText());
+            this.categorias.put(c.getNombre(), c);
+
         }
     }//GEN-LAST:event_btn_saveActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        CargaDatos.CATEGORIAS =  this.categorias;
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -174,6 +177,6 @@ public class Interfaz_Categoría extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField tfl_nombre;
+    private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 }

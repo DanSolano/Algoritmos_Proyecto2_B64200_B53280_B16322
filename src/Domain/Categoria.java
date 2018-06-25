@@ -1,66 +1,53 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Domain;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
-public class Categoria implements Serializable{
-	private String nombre;
-	private Object categoría;
-	private int id;
-	private HashMap<String, Object> mapa;
-	
-	public Categoria(String nombre, Object categ) {
-		this.nombre = nombre;
-		this.categoría = categ;
-		this.id = 1111;
-		mapa = new HashMap<String, Object>();
-		mapa.put(nombre, categ);
-	}
+/**
+ *
+ * @author daniel
+ */
+public class Categoria {
 
-	public String getNombre() {
-		return nombre;
-	}
+    public static int cont = 0;
+    int id;
+    String nombre;
+    String descripcion;
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public Categoria() {
+         this.id = ++cont;
+    }
 
-	public Object getCategoría() {
-		return categoría;
-	}
+    public Categoria(int id, String nombre, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
 
-	public void setCategoría(Object categoría) {
-		this.categoría = categoría;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public HashMap<String, Object> getMapa() {
-		return mapa;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setMapa(HashMap<String, Object> mapa) {
-		this.mapa = mapa;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	//ejemplo de c�mo las propiedades de un hashmap
-	//public void hash() {
-	//Set set = mapa.entrySet();
-		//el iterador funciona como token
-	//    Iterator iterator = set.iterator();
-	//    while(iterator.hasNext()) {
-	//       Map.Entry mentry = (Map.Entry)iterator.next();
-	//       System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
-	//       System.out.println(mentry.getValue());
-	//    }
-	//}
-	
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
 }
